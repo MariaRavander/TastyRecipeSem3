@@ -3,7 +3,7 @@
 namespace TastyRecipes\Integration;
 
 /**
- * Handles the files with comments
+ * Handles the connection to the database and the table for comments (usernames, page, comment and timestamp)
  */
 class CommentStore {
     
@@ -26,7 +26,7 @@ class CommentStore {
     }
 
     /**
-     * @return an array of commententries with user, comment and timestamp.
+     * getAllComments return an array of commententries with user, comment and timestamp.
      */
     public function getAllComments() {
         
@@ -52,7 +52,9 @@ class CommentStore {
         return $commentEntries;
         
     }
-
+    /**
+     * addComment adds an new commententrie with user, comment and timestamp.
+     */
     public function addComment($user, $comment) {
 
         $timestamp = date("Y-m-d-h-i-s-a", time());
@@ -61,6 +63,9 @@ class CommentStore {
         mysqli_query($this->conn, $sql);
 
     }
+    /**
+     * deleteComment delete an commententrie with specific user and timestamp.
+     */
     public function deletComment($user, $timestamp) {
  
         $sql = "DELETE FROM RecipeComments
