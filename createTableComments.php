@@ -12,11 +12,11 @@ if(!$connection) {
 echo "Connected successfully";
 
 
-$sql = "CREATE TABLE Comments (
+$sql = "CREATE TABLE RecipeComments (
     page VARCHAR(50) NOT NULL, 
     comment VARCHAR(300) NOT NULL, 
     username VARCHAR(50) NOT NULL,
-    timestamp VARCHAR(50) NOT NULL,
+    timestamp DATETIME NOT NULL,
     PRIMARY KEY (page, timestamp))";
 
 if($connection->query($sql) === true) {
