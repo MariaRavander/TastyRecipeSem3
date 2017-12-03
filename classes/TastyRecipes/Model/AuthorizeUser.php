@@ -29,12 +29,17 @@ class AuthorizeUser {
     */
     public function registerNewUser($newUsername, $newPassword) {
         
-        if(ctype_print(trim($newUsername)) === false || strlen($newUsername) < 5) {
+        $newUsername2 = htmlentities($newUsername, ENT_QUOTES);
+        $newPassword2 = htmlentities($newPassword, ENT_QUOTES);
+        
+        if(ctype_print(trim($newUsername)) === false || strlen($newUsername) < 5 || $newUsername !== $newUsername2) {
             return Constants::NOT_VALID_USERNAME;
         }
-        if(ctype_print(trim($newPassword)) === false || strlen($newPassword) < 5) {
+        if(ctype_print(trim($newPassword)) === false || strlen($newPassword) < 5 || $newPassword !== $newPassword2) {
             return Constants::NOT_VALID_PASSWORD;
         }
+        
+
         
         $userStore = new UserStore();
 
